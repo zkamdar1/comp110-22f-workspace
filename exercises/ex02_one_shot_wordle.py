@@ -19,13 +19,14 @@ YELLOW_BOX: str = "\U0001F7E8"
 
 i: int = 0
 guess_result = ""
-matching_letter = False
-secret_index = 0
+
 
 while i < len(secret_word):
     if user_guess[i] == secret_word[i]:
         guess_result = guess_result + (f"{GREEN_BOX}")
     else:
+        matching_letter = False
+        secret_index = 0
         while matching_letter is False and secret_index < len(secret_word):
             if user_guess[i] == secret_word[secret_index]:
                 matching_letter = True
@@ -33,9 +34,9 @@ while i < len(secret_word):
                 secret_index = secret_index + 1
         if matching_letter is True:
             guess_result = guess_result + (f"{YELLOW_BOX}")
-            matching_letter = False
         else:
             guess_result = guess_result + (f"{WHITE_BOX}")
+
     i = i + 1
 
 # Above- Indexing input and finding matching characters with secret word, outputing corresponding colored box. 
