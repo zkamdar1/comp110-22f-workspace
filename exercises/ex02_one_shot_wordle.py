@@ -2,6 +2,9 @@
 
 __author__ = "730476042"
 
+from curses.ascii import alt
+
+
 secret_word: str = ("python")
 
 user_guess: str = str(input(f"What is your {len(secret_word)}-letter guess? "))
@@ -18,27 +21,28 @@ YELLOW_BOX: str = "\U0001F7E8"
 
 i: int = 0
 guess_result = ""
+matching_letter = False
+secret_index = 0
 
 while i < len(secret_word):
     if user_guess[i] == secret_word[i]:
         guess_result = guess_result + (f"{GREEN_BOX}")
     else:
-        guess_result = guess_result + (f"{WHITE_BOX}")
+        while matching_letter == False and secret_index < len(secret_word):
+            if user_guess[i] == secret_word[secret_index]:
+                matching_letter = True
+            else: 
+                secret_index = secret_index + 1
+        if matching_letter == True:
+            guess_result = guess_result + (f"{YELLOW_BOX}")
+            matching_letter = False
+        else:
+            guess_result = guess_result + (f"{WHITE_BOX}")
     i = i + 1
-
-print(guess_result)
 
 #Above- Indexing input and finding matching characters with secret word, outputing corresponding colored box. 
 
-#matching_letter = False
-#alter_indices = 0
-
-#while matching_letter == False and alter_indices < len[secret_word]:
- #   if alter_indices == user_guess:
- #      matching_letter = True
-
-
-
+print(guess_result)
 if user_guess == secret_word:
     print("Woo! You got it!")
 else:
