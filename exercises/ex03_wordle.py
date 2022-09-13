@@ -3,9 +3,6 @@
 __author__ = "730476042"
 
 
-from urllib.parse import uses_relative
-
-
 def contains_char(string: str, character: str) -> bool:
     """Returns True if character is found in string."""
     assert len(character) == 1
@@ -42,7 +39,7 @@ def emojified(guess: str, secret:str) -> str:
             else:
                 boxes = boxes + (f"{WHITE_BOX}")
         i = i + 1
-    return(boxes)
+    return boxes
 
 
 def input_guess(length: int) -> str:
@@ -55,3 +52,31 @@ def input_guess(length: int) -> str:
         user_guess = new_guess
 
     return user_guess
+
+
+def main() -> None:
+    """The entrypoint of the program and main Wordle game."""
+    secret_word: str = ("codes")
+
+    turn: int = 1
+    winner: bool = False
+
+    while turn < 7 and winner == False:
+
+        print(f"=== Turn {turn}/6 ===")
+        results = input_guess(5)
+        print(emojified(results, secret_word))
+        
+
+        if results == secret_word:
+            winner = True
+        else:
+            turn = turn + 1
+    
+    if winner == True:
+        print(f"You won in {turn}/6 turns!")
+    elif winner == False:
+        print(f"X/6 - Sorry, try again tommorrow!")
+
+if __name__ == "__main__":
+    main()
