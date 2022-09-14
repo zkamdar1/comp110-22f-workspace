@@ -24,7 +24,8 @@ WHITE_BOX: str = "\U00002B1C"
 GREEN_BOX: str = "\U0001F7E9"
 YELLOW_BOX: str = "\U0001F7E8"
 
-def emojified(guess: str, secret:str) -> str:
+
+def emojified(guess: str, secret: str) -> str:
     """Returns a string of emojis based on matching characters."""
     assert len(guess) == len(secret)
     i: int = 0
@@ -34,7 +35,7 @@ def emojified(guess: str, secret:str) -> str:
         if guess[i] == secret[i]:
             boxes = boxes + (f"{GREEN_BOX}")
         else:
-            if contains_char(secret, guess[i]) == True:
+            if contains_char(secret, guess[i]) is True:
                 boxes = boxes + (f"{YELLOW_BOX}")
             else:
                 boxes = boxes + (f"{WHITE_BOX}")
@@ -44,7 +45,6 @@ def emojified(guess: str, secret:str) -> str:
 
 def input_guess(length: int) -> str:
     """Prompts user until their guess meets expected length."""
-    
     user_guess: str = str(input(f"Enter a {length} character word: "))
 
     while len(user_guess) != length:
@@ -61,22 +61,22 @@ def main() -> None:
     turn: int = 1
     winner: bool = False
 
-    while turn < 7 and winner == False:
+    while turn < 7 and winner is False:
 
         print(f"=== Turn {turn}/6 ===")
         results = input_guess(5)
         print(emojified(results, secret_word))
         
-
         if results == secret_word:
             winner = True
         else:
             turn = turn + 1
     
-    if winner == True:
+    if winner is True:
         print(f"You won in {turn}/6 turns!")
-    elif winner == False:
-        print(f"X/6 - Sorry, try again tommorrow!")
+    elif winner is False:
+        print("X/6 - Sorry, try again tommorrow!")
+
 
 if __name__ == "__main__":
     main()
