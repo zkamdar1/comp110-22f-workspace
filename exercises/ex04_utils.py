@@ -17,7 +17,7 @@ def all(package: list[int], number: int) -> bool:
         if package == [] or number != package[i]:
             return False
         else:
-        # 2.A. Test to see if every index is equal to number
+            # 2.A. Test to see if every index is equal to number
             i += 1
     return True
 
@@ -48,11 +48,15 @@ def max(input: list[int]) -> int:
 # Return type: bool
 def is_equal(list1: list[int], list2: list[int]) -> bool:
     """Returns True if all elements at every index are equal."""
+    if len(list1) == 0 and len(list2) == 0:
+        return False
+    elif len(list1) == 0 or len(list2) == 0:
+        return False
     i_one: int = 0
     i_two: int = 0
 
     while i_one < len(list1) and i_two < len(list2):
-        if list1[i_one] != list2[i_two] or len(list1) == 0 or len(list2) == 0:
+        if list1[i_one] != list2[i_two] or len(list1) != len(list2):
             return False
         i_one += 1
         i_two += 1
