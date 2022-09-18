@@ -2,6 +2,7 @@
 
 __author__ = "730476042"
 
+
 # Function name: all
 # Function parameters: package list([int]), number (int))
 # Return type: bool
@@ -51,7 +52,7 @@ def is_equal(list1: list[int], list2: list[int]) -> bool:
     i_two: int = 0
 
     while i_one < len(list1) and i_two < len(list2):
-        if list1[i_one] != list2[i_two] or len(list1) != len(list2):
+        if list1[i_one] != list2[i_two] or len(list1) == 0 or len(list2) == 0:
             return False
         i_one += 1
         i_two += 1
