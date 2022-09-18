@@ -2,7 +2,7 @@
 
 # Function name: contains
 # We will have 2 parameters: needle (str), haystack(list[str])
-# Retunr type bool
+# Return type bool
 def contains(needle: str, haystack: list([str])) -> bool:
     # Gameplan:
     # 1. Start with the first index
