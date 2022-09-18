@@ -5,7 +5,7 @@ __author__ = "730476042"
 # Function name: all
 # Function parameters: package list([int]), number (int))
 # Return type: bool
-def all(package: list([int]), number: int) -> bool:
+def all(package: list[int], number: int) -> bool:
     """Returns True if every index in packages equals number."""
     # Gameplan:
     # 1. Start with first index
@@ -16,7 +16,7 @@ def all(package: list([int]), number: int) -> bool:
         if package == [] or number != package[i]:
             return False
         else:
-        #  2.A. Test to see if every index is equal to number
+        # 2.A. Test to see if every index is equal to number
             i += 1
     return True
 
@@ -51,7 +51,7 @@ def is_equal(list1: list[int], list2: list[int]) -> bool:
     i_two: int = 0
 
     while i_one < len(list1) and i_two < len(list2):
-        if list1[i_one] != list2[i_two]:
+        if list1[i_one] != list2[i_two] or len(list1) != len(list2):
             return False
         i_one += 1
         i_two += 1
