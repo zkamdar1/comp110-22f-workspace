@@ -49,7 +49,7 @@ def max(input: list[int]) -> int:
 def is_equal(list1: list[int], list2: list[int]) -> bool:
     """Returns True if all elements at every index are equal."""
     if len(list1) == 0 and len(list2) == 0:
-        return False
+        return True
     elif len(list1) == 0 or len(list2) == 0:
         return False
     i_one: int = 0
