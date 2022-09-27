@@ -64,7 +64,7 @@ def main() -> None:
     while turn < 7 and winner is False:
 
         print(f"=== Turn {turn}/6 ===")
-        results = input_guess(5)
+        results = input_guess(len(secret_word))
         print(emojified(results, secret_word))
         
         if results == secret_word:
