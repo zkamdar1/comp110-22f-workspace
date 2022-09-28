@@ -3,7 +3,7 @@
 __author__ = "730476042"
 
 
-from utils import only_evens, concat, sub
+from exercises.ex05.utils import only_evens, concat, sub
 
 
 def test_only_evens_empty() -> None:
