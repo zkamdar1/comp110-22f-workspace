@@ -33,3 +33,29 @@ unc_poy: Player = ("Bacot", 5)
 
 # In a strange world wher ejersey number changes...
 unc_poy = (unc_poy[0], unc_poy[1] + 1)
+
+
+# A range is another common sequence type
+zero_to_nine: range = range(0, 10, 1)
+
+# We can access items of the range
+print(zero_to_nine[0])
+print(zero_to_nine[9])
+
+for i in zero_to_nine:
+    print(i)
+
+
+# We can have different steps for more control
+odds_to_99: range = range(1, 100, 2)
+for i in odds_to_99:
+    print(i)
+
+# Prints a numbered list
+names: list[str] = ["Zaid", "Nabeel", "Josh", "Bill"]
+for i in range(len(names)):
+    print(f"{i}. {names[i]}")
+
+# Prints every other name
+for i in range(0, len(names), 2):
+    print(f"{i}. {names[i]}")
