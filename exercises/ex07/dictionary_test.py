@@ -4,6 +4,7 @@ __author__ = "730476042"
 
 from dictionary import invert, count, favorite_color
 
+
 def test_invert_empty() -> None:
     """Test invert function with empty dictionary."""
     x: dict[str, str] = {}
@@ -22,7 +23,6 @@ def test_invert_many_items() -> None:
     assert invert(x) == {'1': 'a', '2': 'b', '3': 'c', '4': 'd'}
 
 
-
 def test_favorite_color_empty() -> None:
     """Test favorite_color function with empty dictionary."""
     x: dict[str, str] = {}
@@ -39,7 +39,6 @@ def test_favorite_color_many_items() -> None:
     """Test favorite_color function with equal amounts of colors."""
     x: dict[str, str] = {'Zaid': 'blue', 'Bob': 'red', 'Jim': 'purple', 'Carl': 'yellow'}
     assert favorite_color(x) == 'blue'
-
 
 
 def test_count_empty() -> None:
