@@ -5,12 +5,11 @@ __author__ = "730476042"
 # Define your functions below
 
 from csv import DictReader
-from typing import Dict
+
 
 def read_csv_rows(filename: str) -> list[dict[str, str]]:
     """Read the rows of a csv into a 'table'."""
     result: list[dict[str, str]] = []
-
     # Open a handle to the data file
     file_handle = open(filename, "r", encoding="utf8")
 
@@ -55,9 +54,12 @@ def head(table: dict[str, list[str]], rows: int) -> dict[str, list[str]]:
         values: list[str] = []
         i: int = 0
         while i < rows:
-            key_value = list(table[key])
-            values.append(key_value[i])
-            i += 1
+            if rows >= len(table):
+                return table
+            else:
+                key_value = list(table[key])
+                values.append(key_value[i])
+                i += 1
         result[key] = values
     return result
 
