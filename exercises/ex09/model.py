@@ -8,6 +8,7 @@ from math import sin, cos, pi, sqrt
 
 __author__ = "730476042"
 
+
 class Point:
     """A model of a 2-d cartesian coordinate Point."""
     x: float
@@ -31,13 +32,13 @@ class Point:
         distance: float = sqrt(x + y)
         return distance
 
+    
 class Cell:
     """An individual subject in the simulation."""
     location: Point
     direction: Point
-    sickness: int = constants.VULNERABLE
-
-    def __init__(self, location: Point, direction: Point, sickness: int):
+    
+    def __init__(self, location: Point, direction: Point, sickness: int = constants.VULNERABLE):
         """Construct a cell with its location and direction."""
         self.location = location
         self.direction = direction
@@ -48,16 +49,21 @@ class Cell:
     # the result of adding the self object's location with its
     # direction. Hint: Look at the add method.
     def tick(self) -> None:
+        """Update the cells location by adding direction."""
         self.location = self.location.add(self.direction)
         if self.is_infected():
             self.sickness += 1
         if self.sickness > constants.RECOVERY_PERIOD:
             self.immunize()
 
-    
     def color(self) -> str:
-        """Return the color representation of a cell."""
-        return "black"
+        """Return color of cell depending on sickness."""
+        if self.is_vulnerable():
+            return "gray"
+        elif self.is_infected():
+            return "red" 
+        elif self.is_immune():
+            return "blue"
     
     def contract_disease(self) -> None:
         """Assign infected to sickness attribute."""
@@ -76,16 +82,7 @@ class Cell:
             return True
         else:
             return False
-        
-    def color(self) -> str:
-        """Return color of cell depending on sickness."""
-        if self.is_vulnerable():
-            return "gray"
-        elif self.is_infected():
-            return "red" 
-        elif self.is_immune():
-            return "blue"
-        
+
     def contact_with(self, cell: Cell) -> None:
         """Infected cell will make an vulnerable cell infected with contact."""
         if cell.is_vulnerable():
@@ -104,18 +101,16 @@ class Cell:
         else:
             return False
     
-    
 
 class Model:
     """The state of the simulation."""
-
     population: list[Cell]
     time: int = 0
 
     def __init__(self, cells: int, speed: float, infected: int, immune: int = 0):
         """Initialize the cells with infected, random locations, directions, and immunity."""
         self.population = []
-        if (infected + immune) >= cells or infected <= 0:
+        if (infected + immune) >= cells or infected <= 0 or immune >= (cells):
             raise ValueError("# of infected and/or immune cells exceeds # of cells in model.")
         
         for i in range(cells - (infected + immune)):
@@ -138,8 +133,7 @@ class Model:
             sick: int = constants.IMMUNE
             cell: Cell = Cell(start_location, start_direction, sick)
             self.population.append(cell)
-        
-    
+
     def tick(self) -> None:
         """Update the state of the simulation by one time step."""
         self.time += 1
