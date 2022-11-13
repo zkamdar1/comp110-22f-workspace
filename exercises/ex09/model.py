@@ -85,9 +85,9 @@ class Cell:
 
     def contact_with(self, cell: Cell) -> None:
         """Infected cell will make an vulnerable cell infected with contact."""
-        if cell.is_vulnerable():
+        if self.is_infected() and cell.is_vulnerable():
             cell.contract_disease()
-        elif self.is_vulnerable():
+        elif self.is_vulnerable() and cell.is_infected():
             self.contract_disease()
 
     def immunize(self) -> None:
@@ -172,16 +172,16 @@ class Model:
             
     def check_contacts(self) -> None:
         """Compare distance between Cells to check for contact."""
-        infected_cells: list[Cell] = []
-        for cell in self.population:
-            if cell.is_infected():
-                infected_cells.append(cell)
+        # infected_cells: list[Cell] = []
+        # for cell in self.population:
+        #     if cell.is_infected():
+        #         infected_cells.append(cell)
         
-        for cell in infected_cells:
-            for cells in self.population:
-                disance: float = cell.location.distance(cells.location)
+        for cell in range(len(self.population)):
+            for cells in range(cell + 1, len(self.population)):
+                disance: float = self.population[cell].location.distance(self.population[cells].location)
                 if disance < constants.CELL_RADIUS:
-                    cells.contact_with(cell)
+                    self.population[cell].contact_with(self.population[cells])
 
     def is_complete(self) -> bool:
         """Method to indicate when the simulation is complete."""
