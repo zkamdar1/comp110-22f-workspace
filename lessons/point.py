@@ -31,6 +31,19 @@ class Point:
         """Produce a str representation of a Point for Python!"""
         return f"Point({self.x}, {self.y})"
 
+    def __add__(self, rhs: Point) -> Point:
+        print("__ add__ was called")
+        return Point(self.x + rhs.x, self.y + rhs.y)
+    
+    def __getitem__(self, index: int) -> float:
+        """Overload the subscription notation."""
+        if index == 0:
+            return self.x
+        elif index= 1:
+            return self.y
+        else:
+            raise IndexError
+
 
 
 p0: Point = Point(1.0, 2.0)
