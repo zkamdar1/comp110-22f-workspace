@@ -122,12 +122,12 @@ class Simpy:
     
     def __getitem__(self, rhs: Union[int, list[bool]]) -> Union[float, Simpy]:
         """Use subscription operator with Simpy."""
-        result: Simpy = ([])
+        result: Simpy = Simpy([])
         if isinstance(rhs, int):
             return self.values[rhs]
         else:
             assert len(self.values) == len(rhs)
             for i in range(len(self.values)):
                 if rhs[i] is True:
-                    result.append(self.values[i])
+                    result.values.append(self.values[i])
         return result
