@@ -8,6 +8,7 @@ __author__ = "730476042"
 
 
 class Simpy:
+    """Numpy like class."""
     values: list[float]
 
     def __init__(self, x: list[float]):
@@ -127,6 +128,6 @@ class Simpy:
         else:
             assert len(self.values) == len(rhs)
             for i in range(len(self.values)):
-                if rhs[i] == True:
+                if rhs[i] is True:
                     result.append(self.values[i])
         return result
