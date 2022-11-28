@@ -43,7 +43,6 @@ def last(head: Optional[Node]) -> int:
     else:
         return last(head.next)
 
-
         
 def value_at(head: Optional[Node], index: int) -> int:
     """Returns the data of Node stored at a specific index or raises IndexError if index does not exist."""
@@ -62,12 +61,11 @@ def max(head: Optional[Node]) -> int:
     elif head.next == None:
         return head.data
     else:
-        if head.data < head.next.data:
-            return max(Node(head.next.data, head.next.next))
-        else:
+        if head.data > head.next.data:
             return max(Node(head.data, head.next.next))
-
-
+        else:
+            return max(Node(head.next.data, head.next.next))
+        
 
 def linkify(items: list[int]) -> Optional[Node]:
     """Returns linked list of Nodes with same values and order of input list."""
